@@ -1,0 +1,108 @@
+<% include ../partials/header %>
+<div class = "container">
+    <div class = "row">
+        <!--Left sidebar-->
+        <div class = "col-md-3">
+            <a href="/cats" class="lead">Purrfect</p>
+            <ul class = "list-group">
+                <li class="list-group-item">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </ul>
+        </div>
+        <!--Main info-->
+        <div class = "col-md-9 mb-4">
+            <div class="card cat-info">
+                <img src="<%= cat.image %>" class="img-fluid">
+                <div class="card-body">
+                    <div class = "info mb-4">
+                        <h4 class = "card-title"> <a href ="" ><%= cat.name %></a> </h4>
+                        <p class="card-text">
+                            <%= cat.description %> 
+                            <br> <em>Submitted by <a href="/users/<%=cat.author.id%>"><%= cat.author.username %></a></em>
+                        </p>
+                    </div>
+                    
+                    <!--Edit form-->
+                    <form class="collapse form-signin edit-form mb-4" id="cat-collapse<%=cat._id%>" action="/cats/<%= cat._id %>" method="POST">
+                        <div class = "form-group">
+                            <input type = "text" class="form-control" name = "cat[name]" value="<%= cat.name %>">
+                        </div>
+                        <div class = "form-group">
+                            <input type = "number" class="form-control" name = "cat[age]" value="<%= cat.age %>">
+                        </div>
+                        <div class = "form-group">
+                            <input type = "text" class="form-control" name = "cat[image]" value="<%= cat.image %>">
+                        </div>
+                        <div class = "form-group">
+                            <textarea name="cat[description]" class="form-control"><%= cat.description %></textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Save">
+                    </form>
+                    <!--End Edit form-->
+                    <% if(currentUser && cat.author.id.equals(currentUser._id)){ %>
+                        <button class="btn btn-outline-info" data-toggle="collapse" data-target="#cat-collapse<%=cat._id%>">Edit</button>
+                        <form class="inline-form" method="POST" action="/cats/<%= cat._id%>?_method=DELETE">
+                            <button class="btn btn-outline-danger">Delete</button>    
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <!--End main info-->
+            
+            <!--Comments go here-->
+            <div class = "card bg-light mt-3">
+                <div id = "comment-info">
+                    <% cat.comments.forEach( comment => { %>
+                        <div class="row comment">
+                            <div class= "col-md-12 ">
+                                <div class="card bg-light">
+                                <div class = "card-body">
+                                    <div class="float-left">
+                                      <p class="card-title"> <strong><%=comment.author.username %></strong> </p>
+                                   </div>
+                                   <div class="float-right"><%= moment(comment.created).fromNow() %></div>
+                                   <p class="card-text"> <%= comment.text %> </p>
+                                   <!--Edit form-->
+                                   <form class="collapse edit-comment-form mb-2" id="comment-collapse<%= comment._id %>" action="/cats/<%= cat._id %>/comments/<%= comment._id%>?_method=PUT" method="POST">
+                                       <div class="form-group">
+                                           <textarea class="form-control" name="comment[text]"><%=comment.text%></textarea>
+                                       </div>
+                                       <button class="btn btn-primary">Save</button>
+                                   </form>
+                                   <!--End Edit form-->
+                                   <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
+                                      <button class="btn btn-warning btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse<%= comment._id %>">Edit</button>
+                                      <form method = "POST" class="inline-form delete-comment-form" action="/cats/<%=cat._id%>/comments/<%=comment._id%>">
+                                         <button class = "btn btn-danger btn-sm">Delete</button>
+                                      </form>
+                                   <% } %>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                       </div>
+                    <% }) %>
+                </div>
+                <!--Comment form-->
+                <div class = "card bg-light">
+                    <div class = "card-body">
+                        <% if(currentUser){ %>
+                            <form method="POST" action="/cats/<%=cat._id%>/comments" class="add-comment-form">
+                                <textarea class="form-control" name="text" placeholder="Share nice things about this cat"></textarea>
+                                <button class="btn btn-outline-primary mt-3">Submit</button>
+                            </form>
+                        <% } else {%>
+                            <div class = "card-text"><a href="/login">Login to comment</a></div>
+                        <% } %>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        
+    
+    </div>
+</div>
+<% include ../partials/footer %>

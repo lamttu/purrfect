@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+    <div class="container">
+        <div class = "row">
+            <div class = "col-md-4">
+                <div class = "card bg-light mb-3">
+                    <img class="img-fluid" src="<%=user.avatar%>">
+                    <div class="card-body">
+                        <div class="card-title"><%=user.firstName%> <%=user.lastName%></div>
+                        <div class="card-text">
+                            <p><em><%=user.email%></em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <% if(currentUser && user._id.equals(currentUser._id)){ %>
+                            Your cats
+                        <%} else { %>    
+                            Cats of the same owner
+                        <% } %>
+                    </div>
+                    <div class = "card-body">
+                        <div class = "row">
+                            <% cats.forEach(cat => { %>
+                                <div class = "col-md-4">
+                                    <div class = "card mb-3">
+                                        <img class = "img-fluid" src="<%=cat.image%>">
+                                        <a class="card-footer" href="cats/<%=cat._id%>"><%=cat.name%></a>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% include ../partials/footer %>

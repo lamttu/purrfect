@@ -1,0 +1,69 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class = "jumbotron">
+        <h1 class="display-4">Welcome to Purrfect!</h1>
+        <p class="lead">Your purrfect feline companion service</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="/cats/new">Register a cat</a>
+    </div>
+    <!--Show all the cats-->
+    <div class="row">
+        <% cats.forEach(cat => { %>
+            <div class="col-md-3">
+                <div class = "card mb-4">
+                    <img class = "img-fluid" src="<%= cat.image %>">
+                    <div class="card-body">
+                        <p class="card-title"><%= cat.name %></p>
+                        <a href="/cats/<%= cat._id %>">More info</a>
+                        
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    <!--Pages-->
+    <nav aria-label="Page navigation">
+        <% if (pages && pages > 0) { %>
+        <ul class="pagination justify-content-center">
+            <% if (current == 1) { %>
+            <li class="page-item disabled"><a class="page-link">«</a></li>
+            <% } else { %>
+            <li class="page-item"><a class="page-link" href="/cats?page=<%= current - 1 %>">«</a></li>
+            <% } %>
+     
+            <% 
+            // Number of pages displayed
+            let displayPages = 5;
+            // This will set the current page at the middle of the 5 pages
+            let pageOffset = Math.floor(displayPages/2);
+            // Calculate the first page that will be displayed
+            let startPage = current > pageOffset ? current - pageOffset : 1; 
+            // if startPage !== 1, we still have previous pages => append ... to show that there are more pages
+            if (startPage !== 1) { %>
+                <li class="page-item disabled"><a class="page-link" href="/cats?page=<%=current - 1%>">...</a></li>
+            <% } 
+            // Display the next 5 pages counting from the current page (i)
+            for (let i = startPage; i <= (current + pageOffset) && i <= pages; i++) {
+                if (i == current) { %>
+                    <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                <% } else { %>
+                    <li class="page-item"><a class="page-link" href="/cats?page=<%= i %>"><%= i %></a></li>
+                <% }
+                // There are still more pages at the end, append ... to show
+                if (i == current + pageOffset && i < pages) { %>
+                    <li class="page-item disabled"><a class="page-link">...</a></li>
+            <% } 
+            }
+            // Currently at the final page
+            if (current == pages) { %>
+                <li class="disabled"><a class="page-link">»</a></li>
+            <% } else { %>
+                <li><a class="page-link" href="/cats?page=<%=current + 1 %>">»</a></li>
+            <% } %>
+     
+        </ul>
+        <% } %>
+    </nav>
+</div>
+
+<% include ../partials/footer %>

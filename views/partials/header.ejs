@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Purrfect - Your purrfect adoption service</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheet/main.css">
+    </head>
+    <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">Purrfect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a href="/cats" class="nav-link">Home</a></li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <% if(!currentUser){ %>
+                        <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+                        <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                    <% } else { %>
+                        <li class="nav-item"><a href="/users/<%= currentUser._id %>" class="nav-link">Welcome back, <%= currentUser.firstName %></a></li>
+                        <li class="nav-item"><a href="/logout" class="nav-link">Log out</a></li>
+                    <%} %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+         <!--Alerts message-->
+        <% if(error && error.length >0){ %>
+            <div class="alert alert-danger">
+                <%=error%>
+            </div>
+        <% } %>
+        <% if(success && success.length >0){ %>
+            <div class="alert alert-success">
+                <%=success%>
+            </div>
+        <% } %>
+    </div>
+   

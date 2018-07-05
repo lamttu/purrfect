@@ -1,0 +1,9 @@
+.inline-form{
+    display:inline;
+}
+.card-title::first-letter {
+    text-transform: uppercase;
+}
+.card-text{
+    clear: both;
+}
