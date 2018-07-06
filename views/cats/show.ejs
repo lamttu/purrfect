@@ -5,9 +5,9 @@
         <div class = "col-md-3">
             <a href="/cats" class="lead">Purrfect</p>
             <ul class = "list-group">
-                <li class="list-group-item">Info 1</li>
-                <li class="list-group-item">Info 2</li>
-                <li class="list-group-item">Info 3</li>
+                <li class="list-group-item"><a>Info 1</a></li>
+                <li class="list-group-item"><a>Info 2</a></li>
+                <li class="list-group-item"><a>Info 3</a></li>
             </ul>
         </div>
         <!--Main info-->
@@ -72,9 +72,9 @@
                                    </form>
                                    <!--End Edit form-->
                                    <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
-                                      <button class="btn btn-warning btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse<%= comment._id %>">Edit</button>
+                                      <button class="btn btn-outline-info btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse<%= comment._id %>">Edit</button>
                                       <form method = "POST" class="inline-form delete-comment-form" action="/cats/<%=cat._id%>/comments/<%=comment._id%>">
-                                         <button class = "btn btn-danger btn-sm">Delete</button>
+                                         <button class = "btn btn-outline-danger btn-sm">Delete</button>
                                       </form>
                                    <% } %>
                                     </div>

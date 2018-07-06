@@ -60,7 +60,7 @@ $(".add-comment-form").submit(function(e){
                             <div class="float-left">
                               <p class="card-title"> <strong>${data.comment.author.username }</strong> </p>
                             </div>
-                            <div class="float-right">Updated a few seconds ago</div>
+                            <div class="float-right">A few seconds ago</div>
                             <p class="card-text"> ${ data.comment.text } </p>
                             <form class="collapse edit-comment-form mb-2" id="comment-collapse${data.comment._id}" action="/cats/${data.cat_id}/comments/${data.comment._id}" method="POST">
                                 <div class="form-group">
@@ -69,9 +69,9 @@ $(".add-comment-form").submit(function(e){
                                 <input type="submit" class="btn btn-primary" value="Save">
                             </form>
                                 
-                            <button class="btn btn-warning btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse${data.comment._id}">Edit</button>
+                            <button class="btn btn-outline-info btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse${data.comment._id}">Edit</button>
                             <form method = "POST" class="inline-form delete-comment-form" action="/cats/${data.cat_id}/comments/${data.comment._id}">
-                                <button class = "btn btn-danger btn-sm">Delete</button>
+                                <button class = "btn btn-outline-danger btn-sm">Delete</button>
                             </form>
                                 
                         </div>
@@ -101,7 +101,7 @@ $("#comment-info").on("submit", ".edit-comment-form", function(e){
                     <div class="float-left">
                       <p class="card-title"> <strong>${data.comment.author.username}</strong> </p>
                     </div>
-                    <div class="float-right">${data.comment.created}</div>
+                    <div class="float-right">Updated a few seconds ago</div>
                     <p class="card-text"> ${data.comment.text} </p>
                     <!--Edit form-->
                     <form class="collapse edit-comment-form mb-2" id="comment-collapse${data.comment._id}" action="/cats/${data.cat_id}/comments/${data.comment._id}" method="POST">
@@ -112,9 +112,9 @@ $("#comment-info").on("submit", ".edit-comment-form", function(e){
                     </form>
                     <!--End Edit form-->
                     
-                    <button class="btn btn-warning btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse${data.comment._id}">Edit</button>
+                    <button class="btn btn-outline-info btn-sm" data-toggle="collapse" aria-expanded="false" data-target="#comment-collapse${data.comment._id}">Edit</button>
                     <form method = "POST" class="inline-form delete-comment-form" action="/cats/${data.cat_id}/comments/${data.comment._id}">
-                        <button class = "btn btn-danger btn-sm">Delete</button>
+                        <button class = "btn btn-outline-danger btn-sm">Delete</button>
                     </form>
                
                     </div>

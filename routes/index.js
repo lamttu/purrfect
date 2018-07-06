@@ -18,7 +18,6 @@ router.get("/register", (req, res) =>{
 })
 // Register logic
 router.post("/register", (req,res)=>{
-    req.body = req.sanitize(req.body);
     let newUser = new User({
         username: req.body.username,
         email: req.body.email,
@@ -33,7 +32,7 @@ router.post("/register", (req,res)=>{
             return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, ()=>{
-            req.flash("success", "Welcome to Purrfect, "+ user.username + "! Have fun browsing our companions");
+            req.flash("success", "Welcome to Purrfect, "+ user.firstName + "! Have fun browsing our companions");
             res.redirect("/cats");
         })
     })

@@ -33,7 +33,8 @@ const Cat = require("./models/cat"),
     Comment = require("./models/comment");
 
 // Connect to mongodb
-mongoose.connect("mongodb://localhost/purrfect");
+//mongoose.connect("mongodb://localhost/purrfect");
+mongoose.connect("mongodb://lamyao:purrfect123@ds115420.mlab.com:15420/purrfect");
 
 //Set up authentication with passport
 app.use(require("express-session")({

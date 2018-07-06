@@ -12,9 +12,9 @@
             <div class="col-md-3">
                 <div class = "card mb-4">
                     <img class = "img-fluid" src="<%= cat.image %>">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <p class="card-title"><%= cat.name %></p>
-                        <a href="/cats/<%= cat._id %>">More info</a>
+                        <a href="/cats/<%= cat._id %>" class="btn btn-outline-primary">More info</a>
                         
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             }
             // Currently at the final page
             if (current == pages) { %>
-                <li class="disabled"><a class="page-link">»</a></li>
+                <li class="page-item disabled"><a class="page-link">»</a></li>
             <% } else { %>
                 <li><a class="page-link" href="/cats?page=<%=current + 1 %>">»</a></li>
             <% } %>
