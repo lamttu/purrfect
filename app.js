@@ -32,9 +32,10 @@ const Cat = require("./models/cat"),
     User = require("./models/user"),
     Comment = require("./models/comment");
 
+console.log(process.env.DATABASEURL);
 // Connect to mongodb
-//mongoose.connect("mongodb://localhost/purrfect");
-mongoose.connect("mongodb://lamyao:purrfect123@ds115420.mlab.com:15420/purrfect");
+mongoose.connect(process.env.DATABASEURL);
+//mongoose.connect("mongodb://lamyao:purrfect123@ds115420.mlab.com:15420/purrfect");
 
 //Set up authentication with passport
 app.use(require("express-session")({
