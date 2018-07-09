@@ -24,7 +24,7 @@ $(".cat-info").on("submit", ".edit-form", function(e){
                             <input type = "text" class="form-control" name = "cat[name]" value="${ cat.name }">
                         </div>
                         <div class = "form-group">
-                            <input type = "number" class="form-control" name = "cat[age]" value="${ cat.age }">
+                            <input type = "number" class="form-control" min="0" max="40" step="0.5" name = "cat[age]" value="${ cat.age }">
                         </div>
                         <div class = "form-group">
                             <input type = "text" class="form-control" name = "cat[image]" value="${ cat.image }">
