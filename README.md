@@ -1,7 +1,8 @@
 # Purrfect
 Purrfect is a full-stack NodeJS application project with RESTful routing.
 
-![alt text](https://i.imgur.com/On9eSPe.jpg)
+Live site: (https://purrfect123.herokuapp.com/)
+
 
 ## Introduction
 There are people who own cats and don't have enough time to play or take care of them. On the other hand, there are people who don't necessarily have the resouce to own a cat but adore their feline cuteness. 
