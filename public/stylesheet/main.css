@@ -4,6 +4,12 @@
 .card-title::first-letter {
     text-transform: uppercase;
 }
+.image-thumb{
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+}
 .card-text{
     clear: both;
 }
