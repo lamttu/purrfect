@@ -11,7 +11,7 @@
         <% cats.forEach(cat => { %>
             <div class="col-md-3">
                 <div class = "card mb-4">
-                    <div class="image-thumb" style="background-image: url(<%= campground.image %>)"></div>
+                    <div class="image-thumb" style="background-image: url(<%= cat.image %>)"></div>
                     <div class="card-body text-center">
                         <p class="card-title"><%= cat.name %></p>
                         <a href="/cats/<%= cat._id %>" class="btn btn-outline-primary">More info</a>
