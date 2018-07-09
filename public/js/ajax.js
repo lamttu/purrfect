@@ -60,7 +60,7 @@ $(".add-comment-form").submit(function(e){
                             <div class="float-left">
                               <p class="card-title"> <strong>${data.comment.author.username }</strong> </p>
                             </div>
-                            <div class="float-right">A few seconds ago</div>
+                            <div class="float-right">${moment(data.comment.created).fromNow()}</div>
                             <p class="card-text"> ${ data.comment.text } </p>
                             <form class="collapse edit-comment-form mb-2" id="comment-collapse${data.comment._id}" action="/cats/${data.cat_id}/comments/${data.comment._id}" method="POST">
                                 <div class="form-group">
@@ -101,7 +101,7 @@ $("#comment-info").on("submit", ".edit-comment-form", function(e){
                     <div class="float-left">
                       <p class="card-title"> <strong>${data.comment.author.username}</strong> </p>
                     </div>
-                    <div class="float-right">Updated a few seconds ago</div>
+                    <div class="float-right">${moment(data.comment.created).fromNow()}</div>
                     <p class="card-text"> ${data.comment.text} </p>
                     <!--Edit form-->
                     <form class="collapse edit-comment-form mb-2" id="comment-collapse${data.comment._id}" action="/cats/${data.cat_id}/comments/${data.comment._id}" method="POST">
